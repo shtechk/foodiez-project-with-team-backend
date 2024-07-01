@@ -2,4 +2,11 @@
 
 const mongoose = require("mongoose");
 
-//  Category: _id, title, image, recipes, user
+const { model, Schema } = require("mongoose");
+
+const CategorySchema = new Schema({
+  name: String,
+  recipe: [{ type: mongoose.Schema.Types.ObjectId, ref: "Recipe" }],
+});
+
+module.exports = model("Category", CategorySchema);
