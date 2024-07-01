@@ -1,13 +1,13 @@
 const express = require("express");
 const connectDB = require("./database");
 const passport = require("passport");
-const { localStrategy, jwtStrategy } = require("./apis/middlewares/passport");
 const userRouter = require("./apis/users/routes");
-const notFoundHandler = require("./apis/middlewares/notFoundHandler");
-const errorHandler = require("./apis/middlewares/errorHandler");
+const notFoundHandler = require("./middlewares/notFoundHandler");
+const errorHandler = require("./middlewares/errorHandler");
 const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
+const { localStrategy, jwtStrategy } = require("./middlewares/passport");
 const app = express();
 
 app.use(express.json());

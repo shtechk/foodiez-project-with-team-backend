@@ -1,11 +1,9 @@
-const passport = require("passport");
-
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
-const User = require("../../models/User");
+const User = require("../models/User");
 const JWTStrategy = require("passport-jwt").Strategy;
 const { fromAuthHeaderAsBearerToken } = require("passport-jwt").ExtractJwt;
-
+require("dotenv").config();
 //localStrategy function that we will call before signin function
 const localStrategy = new LocalStrategy(
   {
