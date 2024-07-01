@@ -6,6 +6,10 @@ const passport = require("passport");
 userRouter.post("/signup", signup);
 userRouter.post(
   "/signin",
+  (req, res, next) => {
+    console.log("fit");
+    next();
+  },
   passport.authenticate("local", { session: false }),
   signin
 );
