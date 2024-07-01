@@ -29,6 +29,7 @@ const signup = async (req, res) => {
 };
 const signin = async (req, res, next) => {
   try {
+    console.log("first");
     const user = req.user; //this function wil not apply unless the middleware "local" work
     const token = generateToken(user); // after we catch the user and checked every thing is correct we generate token for him
     return res.status(200).json({ token });
