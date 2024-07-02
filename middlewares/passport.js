@@ -14,12 +14,12 @@ const localStrategy = new LocalStrategy(
     try {
       const user = await User.findOne({ username: username });
       if (!user) {
-        return next({ msg: "Username or password is wrong!" });
+        return next({ message: "Username or password is wrong!" });
       }
 
       const checkPassword = await bcrypt.compare(password, user.password);
       if (checkPassword == false) {
-        return next({ msg: "Username or password is wrong!" });
+        return next({ message: "Username or password is wrong!" });
       }
       next(false, user);
     } catch (error) {
@@ -41,7 +41,7 @@ const jwtStrategy = new JWTStrategy(
       const user = await User.findById(payload._id);
 
       if (!user) {
-        return next({ msg: "User not found!" });
+        return next({ message: "User not found!" });
       }
       next(null, user);
     } catch (error) {
