@@ -18,10 +18,11 @@ const createNewRecipe = async (req, res, next) => {
   }
 };
 
-const getOneRecipe = async (recipeId, next) => {
+const getOneRecipe = async (req, res, next) => {
   try {
-    const recipe = await Recipe.findById(recipeId);
-    return recipe;
+    const { id } = req.params;
+    const recipe = await Recipe.findById(id);
+    res.status(200).json(recipe);
   } catch (error) {
     next(error);
   }
