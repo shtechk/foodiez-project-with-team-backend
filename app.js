@@ -8,17 +8,22 @@ const path = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
+const recipeRouter = require("./apis/recipes/routes");
 const app = express();
 app.use(express.json());
-app.use("/media", express.static(path.join(__dirname, "media")));
-app.use(morgan("dev"));
 app.use(cors());
+app.use(morgan("dev"));
 app.use(passport.initialize());
 passport.use("local", localStrategy);
 passport.use("jwt", jwtStrategy);
-app.use(userRouter);
+
+app.use("/media", express.static(path.join(__dirname, "media")));
+app.use("/api/auth", userRouter);
+app.use("/api/recipes", recipeRouter);
+
 app.use(notFoundHandler);
 app.use(errorHandler);
+
 connectDB();
 app.listen(8000, () => {
   console.log("localhost 8000");
