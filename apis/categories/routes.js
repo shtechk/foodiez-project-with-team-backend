@@ -1,7 +1,4 @@
 const express = require("express");
-
-// dana
-const express = require("express");
 const {
   getAllCategories,
   getOneCategory,
