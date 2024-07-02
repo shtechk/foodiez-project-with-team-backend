@@ -2,7 +2,7 @@ const Recipe = require("../../models/Recipe");
 
 const getAllRecipes = async (req, res, next) => {
   try {
-    const recipes = await Recipe.find().populate("recipes");
+    const recipes = await Recipe.find();
     return res.status(200).json(recipes);
   } catch (error) {
     next(error);

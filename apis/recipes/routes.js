@@ -4,10 +4,11 @@ const {
   createNewRecipe,
   getOneRecipe,
 } = require("./controller");
+const upload = require("../../middlewares/multer");
 const recipeRouter = express.Router();
 
-recipeRouter.get("/recipe", getAllRecipes);
-recipeRouter.post("/recipe", createNewRecipe);
-recipeRouter.get("/recipe/:id", getOneRecipe);
+recipeRouter.get("/", getAllRecipes);
+recipeRouter.post("/", upload.array("images"), createNewRecipe);
+recipeRouter.get("/:id", getOneRecipe);
 
 module.exports = recipeRouter;

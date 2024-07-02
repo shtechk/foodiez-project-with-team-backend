@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 // Recipe: _id, name, instructions, images, ingredients, category, user
 
