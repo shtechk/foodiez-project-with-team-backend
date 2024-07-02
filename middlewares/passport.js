@@ -4,16 +4,14 @@ const User = require("../models/User");
 const JWTStrategy = require("passport-jwt").Strategy;
 const { fromAuthHeaderAsBearerToken } = require("passport-jwt").ExtractJwt;
 require("dotenv").config();
-//localStrategy function that we will call before signin function
+
 const localStrategy = new LocalStrategy(
   {
     usernameField: "username",
     passwordField: "password",
   },
-
   async (username, password, next) => {
     try {
-      //1.check username
       const user = await User.findOne({ username: username });
       if (!user) {
         return next({ message: "Username or password is wrong!" });
@@ -30,7 +28,6 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-// JwtStrategy
 const jwtStrategy = new JWTStrategy(
   {
     jwtFromRequest: fromAuthHeaderAsBearerToken(),
