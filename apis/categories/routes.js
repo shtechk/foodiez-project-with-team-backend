@@ -10,12 +10,18 @@ const {
   deleteCategory,
 } = require("./controllers");
 const upload = require("../../middlewares/multer");
+const passport = require("passport");
 
 const CategoryRouter = express.Router();
 
 CategoryRouter.get("/", getAllCategories);
 CategoryRouter.get("/:id", getOneCategory);
-CategoryRouter.post("/", upload.single("image"), createNewCategory);
+CategoryRouter.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  createNewCategory
+);
 CategoryRouter.post("/", updateCategory);
 CategoryRouter.delete("/", deleteCategory);
 

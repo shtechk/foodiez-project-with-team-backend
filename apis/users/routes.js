@@ -1,9 +1,10 @@
 const express = require("express");
-const { signup, signin } = require("./controllers");
+const { signup, signin, getProfile } = require("./controllers");
 const userRouter = express.Router();
 const passport = require("passport");
+const upload = require("../../middlewares/multer");
 // safa
-userRouter.post("/signup", signup);
+userRouter.post("/signup", upload.single("image"), signup);
 userRouter.post(
   "/signin",
   (req, res, next) => {
@@ -12,5 +13,10 @@ userRouter.post(
   },
   passport.authenticate("local", { session: false }),
   signin
+);
+userRouter.get(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  getProfile
 );
 module.exports = userRouter;

@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { localStrategy, jwtStrategy } = require("./middlewares/passport");
 const app = express();
+
 app.use(express.json());
 app.use("/media", express.static(path.join(__dirname, "media")));
 app.use(morgan("dev"));
