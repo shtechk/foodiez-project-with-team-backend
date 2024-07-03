@@ -1,7 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-// Recipe: _id, name, instructions, images, ingredients, category, user
-
 const RecipeSchema = new Schema({
   name: String,
   instructions: String,

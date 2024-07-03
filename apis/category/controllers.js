@@ -1,5 +1,3 @@
-//  dana
-
 const Category = require("../../models/Category");
 
 const getAllCategories = async (req, res, next) => {
