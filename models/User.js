@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true },
   image: { type: String, defult: "link" },
 
-  recipes: [],
-  categories: [],
-  ingredients: [],
+  recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Recipe" }],
+  categories: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  ingredients: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ingredient" }],
 });
 
 module.exports = mongoose.model("User", UserSchema);
