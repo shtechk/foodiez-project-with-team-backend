@@ -1,18 +1,21 @@
 const express = require("express");
-const { signup, signin, getProfile } = require("./controllers");
+const { register, login, getProfile } = require("./controllers");
 const userRouter = express.Router();
 const passport = require("passport");
 const upload = require("../../middlewares/multer");
-// safa
-userRouter.post("/signup", upload.single("image"), signup);
+
+userRouter.post("/register", register);
+
 userRouter.post(
-  "/signin",
+  "/login",
   passport.authenticate("local", { session: false }),
-  signin
+  login
 );
+
 userRouter.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   getProfile
 );
+
 module.exports = userRouter;

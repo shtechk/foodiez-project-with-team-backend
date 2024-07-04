@@ -1,8 +1,8 @@
-// safa
 const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+
 const generateToken = (user) => {
   const payload = {
     _id: user._id,
@@ -12,7 +12,7 @@ const generateToken = (user) => {
   return token;
 };
 
-const signup = async (req, res) => {
+const register = async (req, res) => {
   try {
     const image = req.file ? req.file.path : null;
     if (image) req.body.image = image;
@@ -25,7 +25,8 @@ const signup = async (req, res) => {
     res.json(error);
   }
 };
-const signin = async (req, res, next) => {
+
+const login = async (req, res, next) => {
   try {
     console.log("first");
     const user = req.user;
@@ -35,6 +36,7 @@ const signin = async (req, res, next) => {
     next(error);
   }
 };
+
 const getProfile = async (req, res, next) => {
   try {
     return res.status(200).json(req.user);
@@ -42,4 +44,5 @@ const getProfile = async (req, res, next) => {
     next(error);
   }
 };
-module.exports = { signup, signin, getProfile };
+
+module.exports = { register, login, getProfile };
