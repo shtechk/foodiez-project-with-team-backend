@@ -1,16 +1,11 @@
 const { Schema, model } = require("mongoose");
 
 const RecipeSchema = new Schema({
-  name: String,
-  instructions: String,
+  title: { type: String, required: true },
+  description: { type: String },
+  image: { type: String },
+  ingredients: [{ type: Schema.Types.ObjectId, ref: "Ingredient" }],
   category: { type: Schema.Types.ObjectId, ref: "Category" },
-  ingredients: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Ingredient",
-    },
-  ],
-  images: [String],
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

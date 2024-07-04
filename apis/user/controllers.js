@@ -14,13 +14,11 @@ const generateToken = (user) => {
 
 const signup = async (req, res) => {
   try {
-    // encrypt the password
+    const image = req.file ? req.file.path : null;
+    if (image) req.body.image = image;
     req.body.password = await bcrypt.hash(req.body.password, 10);
 
-    // create new user and save his username & password in DB
     const user = await User.create(req.body);
-
-    // call generateToken function to generate the Token for this user, so i have to send the user for the function
     const token = generateToken(user);
     res.status(201).json({ token });
   } catch (error) {
@@ -30,8 +28,8 @@ const signup = async (req, res) => {
 const signin = async (req, res, next) => {
   try {
     console.log("first");
-    const user = req.user; //this function wil not apply unless the middleware "local" work
-    const token = generateToken(user); // after we catch the user and checked every thing is correct we generate token for him
+    const user = req.user;
+    const token = generateToken(user);
     return res.status(200).json({ token });
   } catch (error) {
     next(error);

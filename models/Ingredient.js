@@ -1,10 +1,13 @@
 //  safa
 
 const mongoose = require("mongoose");
-const IngredientSchema = new mongoose.Schema({
+
+const { model, Schema } = mongoose;
+
+const IngredientSchema = new Schema({
   name: { type: String, required: true },
-  recipes: [],
-  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  quantity: { type: String },
 });
-module.exports = mongoose.model("Ingredient", IngredientSchema);
+
+module.exports = model("Ingredient", IngredientSchema);
 //  Ingredients: _id, name, recipes, user
