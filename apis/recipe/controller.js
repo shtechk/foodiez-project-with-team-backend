@@ -21,7 +21,7 @@ const createNewRecipe = async (req, res, next) => {
     const { ingredients } = req.body;
 
     const cat = await Category.findById(category);
-    req.body.category = cat._id;
+    req.body.category = cat?._id;
 
     const newIng = ingredients.split(",");
     console.log("newIng", newIng);
@@ -29,13 +29,14 @@ const createNewRecipe = async (req, res, next) => {
     for await (i of newIng) {
       let x = await Ingredient.find({ _id: i });
 
-      ings.push(x[0]._id);
+      ings.push(x[0]?._id);
     }
     req.body.ingredients = ings;
     console.log(req.body);
     const recipe = await Recipe.create(req.body);
     return res.status(201).json(recipe);
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };

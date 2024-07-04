@@ -4,10 +4,10 @@ const userRouter = express.Router();
 const passport = require("passport");
 const upload = require("../../middlewares/multer");
 
-userRouter.post("/register", register);
+userRouter.post("/signup", register);
 
 userRouter.post(
-  "/login",
+  "/signin",
   passport.authenticate("local", { session: false }),
   login
 );
