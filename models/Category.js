@@ -7,4 +7,4 @@ const CategorySchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-module.exports = model("Category", CategorySchema);
+module.exports = model("Category2", CategorySchema);

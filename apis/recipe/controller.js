@@ -52,6 +52,16 @@ const getOneRecipe = async (req, res, next) => {
     next(error);
   }
 };
+//safa
+const getRecipesByCategory = async (req, res, next) => {
+  const categoryId = req.params.categoryId;
+  try {
+    const recipes = await Recipe.find({ category: categoryId });
+    return res.status(200).json(recipes);
+  } catch (error) {
+    next(error);
+  }
+};
 
 const deleteOneRecipe = async (req, res) => {
   try {
@@ -67,4 +77,5 @@ module.exports = {
   createNewRecipe,
   getOneRecipe,
   deleteOneRecipe,
+  getRecipesByCategory,
 };
