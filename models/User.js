@@ -1,15 +1,14 @@
 // safa
 
 const mongoose = require("mongoose");
-const UserSchema = new mongoose.Schema({
+
+const { model, Schema } = mongoose;
+
+const UserSchema = new Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
-  image: { type: String, defult: "link" },
-
-  recipes: [],
-  categories: [],
-  ingredients: [],
+  image: { type: String },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = model("User", UserSchema);
 // User: _id, username, password, recipes, categories, ingredients

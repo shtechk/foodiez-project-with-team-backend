@@ -8,14 +8,15 @@ const createIngrediant = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
-  const getAllIngrediants = async (req, res, next) => {
-    try {
-      const allIngrediant = await Ingredient.find();
-      return res.status(200).json(allIngrediant);
-    } catch (error) {
-      next(error);
-    }
-  };
 };
+
+const getAllIngrediants = async (req, res, next) => {
+  try {
+    const allingrediants = await Ingredient.find();
+    return res.status(200).json(allingrediants);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = { createIngrediant, getAllIngrediants };

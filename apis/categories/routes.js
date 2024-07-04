@@ -19,7 +19,16 @@ CategoryRouter.post(
   upload.single("image"),
   createNewCategory
 );
-CategoryRouter.post("/", updateCategory);
-CategoryRouter.delete("/", deleteCategory);
+CategoryRouter.put(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  upload.single("image"),
+  updateCategory
+);
+CategoryRouter.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  deleteCategory
+);
 
 module.exports = CategoryRouter;
