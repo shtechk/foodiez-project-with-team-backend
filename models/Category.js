@@ -1,10 +1,8 @@
-const mongoose = require("mongoose");
-
 const { model, Schema } = require("mongoose");
 
 const CategorySchema = new Schema({
   name: String,
-  recipe: [{ type: mongoose.Schema.Types.ObjectId, ref: "Recipe" }],
+  recipes: [{ type: Schema.Types.ObjectId, ref: "Recipes" }],
   image: String,
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });

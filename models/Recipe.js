@@ -1,17 +1,17 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require("mongoose");
 
-const RecipeSchema = new Schema({
+const RecipeSchema = new mongoose.Schema({
   name: String,
   instructions: String,
-  category: { type: Schema.Types.ObjectId, ref: "Category" },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
   ingredients: [
     {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Ingredient",
     },
   ],
-  images: [String],
-  user: { type: Schema.Types.ObjectId, ref: "User" },
+  image: String,
+  user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
-module.exports = model("Recipe", RecipeSchema);
+module.exports = mongoose.model("Recipe", RecipeSchema);
