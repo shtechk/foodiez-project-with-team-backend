@@ -4,7 +4,7 @@ const userRouter = express.Router();
 const passport = require("passport");
 const upload = require("../../middlewares/multer");
 
-userRouter.post("/signup", register);
+userRouter.post("/signup", upload.single("image"), register);
 
 userRouter.post(
   "/signin",

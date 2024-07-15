@@ -18,20 +18,20 @@ const createNewRecipe = async (req, res, next) => {
     }
     console.log(req.body);
     const { category } = req.body;
-    const { ingredients } = req.body;
+    // const { ingredients } = req.body;
 
     const cat = await Category.findById(category);
     req.body.category = cat?._id;
 
-    const newIng = ingredients.split(",");
-    console.log("newIng", newIng);
-    let ings = [];
-    for await (i of newIng) {
-      let x = await Ingredient.find({ _id: i });
+    // const newIng = ingredients.split(",");
+    // console.log("newIng", newIng);
+    // let ings = [];
+    // for await (i of newIng) {
+    //   let x = await Ingredient.find({ _id: i });
 
-      ings.push(x[0]?._id);
-    }
-    req.body.ingredients = ings;
+    //   ings.push(x[0]?._id);
+    // }
+    req.body.ingredients = [];
     console.log(req.body);
     const recipe = await Recipe.create(req.body);
     return res.status(201).json(recipe);
